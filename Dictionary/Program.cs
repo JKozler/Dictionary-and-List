@@ -10,6 +10,8 @@ namespace Dictionary
         {
             string s = Console.ReadLine();
             Read(s);
+            Console.WriteLine("");
+            Console.WriteLine("");
             Console.Write("Chceš vidět jejich pozice v souboru? <ano/ne>: ");
             if (Console.ReadLine() == "ano")
             {
@@ -38,18 +40,25 @@ namespace Dictionary
                     }
                 }
             }
+            Console.WriteLine("Slovo                     abs. četnost                      rel. četnost");
+            Console.WriteLine("========================================================================");
             foreach (KeyValuePair<string, int> da in d)
             {
-                Console.WriteLine("Slovo: {0}, abs. čtenost: {1}, rel. četnost: {2}",da.Key, da.Value, Convert.ToDouble(da.Value) / Convert.ToDouble(da.Key.Length));
+            Console.WriteLine("{0}                       {1}                               {2}",da.Key, da.Value, Convert.ToDouble(da.Value) / Convert.ToDouble(da.Key.Length));
             }
         }
 
         public static void ZjistiPozice(string path)
         {
             List<string> l = new List<string>();
+            Dictionary<List<string>, int> di = new Dictionary<List<string>, int>();
             using (StreamReader sr = new StreamReader(path))
             {
-
+                string ovoce;
+                while ((ovoce = sr.ReadLine()) != null)
+                {
+                    l.Add(ovoce);
+                }
             }
         }
     }
