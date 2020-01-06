@@ -50,15 +50,30 @@ namespace Dictionary
 
         public static void ZjistiPozice(string path)
         {
-            List<string> l = new List<string>();
-            Dictionary<List<string>, int> di = new Dictionary<List<string>, int>();
+            Dictionary<string, List<int>> di = new Dictionary<string, List<int>>();
             using (StreamReader sr = new StreamReader(path))
             {
                 string ovoce;
                 while ((ovoce = sr.ReadLine()) != null)
                 {
-                    l.Add(ovoce);
+                    int i = 0;
+                    if (di.ContainsKey(ovoce))
+                    {
+                        di[ovoce] = new List<int>();
+                        di[ovoce].Add(i);
+                        i++;
+                    }
+                    else
+                    {
+                        di.Add(ovoce, new List<int>());
+                        di[ovoce].Add(i);
+                        i++;
+                    }
                 }
+            }
+            foreach (KeyValuePair<string, List<int>> item in di)
+            {
+                Console.WriteLine(item.Key + "   " + item.Value);
             }
         }
     }
